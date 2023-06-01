@@ -17,10 +17,10 @@ def sigmoid(x):
     return 1/(1+np.exp(-x))
 
 INPUT_NEURONS = 3
-HIDDEN_NEURONS = 20
+HIDDEN_NEURONS = 10
 OUTPUT_NEURONS = 8
 TRAINING_FILE_NAME = "colours_combined.txt"
-TRAIN = True
+TRAIN = False
 
 LEARNING_RATE = 0.5
 
@@ -34,7 +34,10 @@ if TRAIN:
     with open(TRAINING_FILE_NAME, "r") as f:
         training_data = f.readlines()
         random.shuffle(training_data) # randomizes the order of the training data
-        training_data.extend(training_data) # doubles up the training data so it runs through it again
+        training_data.extend(training_data) # multiplies the training data for multiple passes (makes it do really well actually lol)
+        training_data.extend(training_data)
+        training_data.extend(training_data)
+        training_data.extend(training_data)
 
         for t in training_data:
             data = t.split()
