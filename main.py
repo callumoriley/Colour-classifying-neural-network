@@ -62,7 +62,7 @@ if TRAIN:
                 # calculating the changes on the output layer weights
                 d_error_d_outs = -(colour_name_to_expected_arr(data[3]) - output_outputs) # 8x1
                 d_outs_d_nets = output_outputs*(1-output_outputs) # 8x1
-                d_error_d_nets = np.multiply(d_error_d_outs, d_outs_d_nets) # 8x1
+                d_error_d_nets = d_error_d_outs*d_outs_d_nets # 8x1
                 d_nets_d_weights = np.array([hidden_outputs]*OUTPUT_NEURONS) # 8x10
 
                 d_error_d_weights = (d_nets_d_weights.T * d_error_d_nets).T
@@ -73,7 +73,7 @@ if TRAIN:
 
                 d_errors_d_hiddenouts = np.array([np.dot(d_error_d_nets, ol_weights[:,i]) for i in range(0, HIDDEN_NEURONS)])
                 d_outs_d_nets = hidden_outputs*(1-hidden_outputs)
-                d_error_d_nets = np.multiply(d_errors_d_hiddenouts, d_outs_d_nets)
+                d_error_d_nets = d_errors_d_hiddenouts*d_outs_d_nets
                 d_nets_d_weights = np.array([input_vals]*HIDDEN_NEURONS)
 
                 d_error_d_weights = (d_nets_d_weights.T * d_error_d_nets).T
