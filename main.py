@@ -20,6 +20,7 @@ INPUT_NEURONS = 3
 HIDDEN_NEURONS = 10
 OUTPUT_NEURONS = 8
 TRAINING_FILE_NAME = "colours_combined.txt"
+EPOCHS = 10
 TRAIN = False
 
 LEARNING_RATE = 0.5
@@ -34,62 +35,59 @@ if TRAIN:
     with open(TRAINING_FILE_NAME, "r") as f:
         training_data = f.readlines()
         random.shuffle(training_data) # randomizes the order of the training data
-        training_data.extend(training_data) # multiplies the training data for multiple passes (makes it do really well actually lol)
-        training_data.extend(training_data)
-        training_data.extend(training_data)
-        training_data.extend(training_data)
 
-        for t in training_data:
-            data = t.split()
+        for epoch in range(0, EPOCHS):
+            for t in training_data:
+                data = t.split()
 
-            # FORWARD PASS
-            input_vals = np.array([float(data[i]) for i in range(0, INPUT_NEURONS)])
+                # FORWARD PASS
+                input_vals = np.array([float(data[i]) for i in range(0, INPUT_NEURONS)])
 
-            # calculating hidden layer outputs
-            hidden_nets = np.array([np.dot(w, input_vals) for w in hl_weights])
-            hidden_outputs = sigmoid(hidden_nets)
-            
-            # calculating output layer outputs
-            output_nets = np.array([np.dot(w, hidden_outputs) for w in ol_weights])
-            output_outputs = sigmoid(output_nets)
+                # calculating hidden layer outputs
+                hidden_nets = np.array([np.dot(w, input_vals) for w in hl_weights])
+                hidden_outputs = sigmoid(hidden_nets)
+                
+                # calculating output layer outputs
+                output_nets = np.array([np.dot(w, hidden_outputs) for w in ol_weights])
+                output_outputs = sigmoid(output_nets)
 
-            # calculating error
-            error = np.sum(0.5*(colour_name_to_expected_arr(data[3]) - output_outputs)**2)
-            print(f"Error: {error}\nTraining iterations: {training_iterations}")
-            errors.append(error)
-            training_iterations += 1
-            
-            # BACKWARD PASS
+                # calculating error
+                error = np.sum(0.5*(colour_name_to_expected_arr(data[3]) - output_outputs)**2)
+                print(f"Error: {error}\nTraining iterations: {training_iterations}")
+                errors.append(error)
+                training_iterations += 1
+                
+                # BACKWARD PASS
 
-            # calculating the changes on the output layer weights
-            d_error_d_outs = -(colour_name_to_expected_arr(data[3]) - output_outputs) # 8x1
-            d_outs_d_nets = output_outputs*(1-output_outputs) # 8x1
-            d_error_d_nets = np.multiply(d_error_d_outs, d_outs_d_nets) # 8x1
-            d_nets_d_weights = np.array([hidden_outputs]*OUTPUT_NEURONS) # 8x10
-            
-            d_error_d_weights = d_nets_d_weights # 8x10
-            for i in range(0, OUTPUT_NEURONS):
-                for j in range(0, HIDDEN_NEURONS):
-                    d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
-            
-            new_ol_weights = np.subtract(ol_weights, LEARNING_RATE*d_error_d_weights) # 8x10
+                # calculating the changes on the output layer weights
+                d_error_d_outs = -(colour_name_to_expected_arr(data[3]) - output_outputs) # 8x1
+                d_outs_d_nets = output_outputs*(1-output_outputs) # 8x1
+                d_error_d_nets = np.multiply(d_error_d_outs, d_outs_d_nets) # 8x1
+                d_nets_d_weights = np.array([hidden_outputs]*OUTPUT_NEURONS) # 8x10
+                
+                d_error_d_weights = d_nets_d_weights # 8x10
+                for i in range(0, OUTPUT_NEURONS):
+                    for j in range(0, HIDDEN_NEURONS):
+                        d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
+                
+                new_ol_weights = np.subtract(ol_weights, LEARNING_RATE*d_error_d_weights) # 8x10
 
-            # calculating the changes on the hidden layer weights
+                # calculating the changes on the hidden layer weights
 
-            d_errors_d_hiddenouts = np.array([np.dot(d_error_d_nets, ol_weights[:,i]) for i in range(0, HIDDEN_NEURONS)])
-            d_outs_d_nets = hidden_outputs*(1-hidden_outputs)
-            d_error_d_nets = np.multiply(d_errors_d_hiddenouts, d_outs_d_nets)
-            d_nets_d_weights = np.array([input_vals]*HIDDEN_NEURONS)
-            d_error_d_weights = d_nets_d_weights
-            for i in range(0, HIDDEN_NEURONS):
-                for j in range(0, INPUT_NEURONS):
-                    d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
-                    
-            new_hl_weights = np.subtract(hl_weights, LEARNING_RATE*d_error_d_weights)
+                d_errors_d_hiddenouts = np.array([np.dot(d_error_d_nets, ol_weights[:,i]) for i in range(0, HIDDEN_NEURONS)])
+                d_outs_d_nets = hidden_outputs*(1-hidden_outputs)
+                d_error_d_nets = np.multiply(d_errors_d_hiddenouts, d_outs_d_nets)
+                d_nets_d_weights = np.array([input_vals]*HIDDEN_NEURONS)
+                d_error_d_weights = d_nets_d_weights
+                for i in range(0, HIDDEN_NEURONS):
+                    for j in range(0, INPUT_NEURONS):
+                        d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
+                        
+                new_hl_weights = np.subtract(hl_weights, LEARNING_RATE*d_error_d_weights)
 
-            # assign new weights
-            hl_weights = new_hl_weights
-            ol_weights = new_ol_weights
+                # assign new weights
+                hl_weights = new_hl_weights
+                ol_weights = new_ol_weights
 
     plt.plot(errors)
     plt.show(block=False)
