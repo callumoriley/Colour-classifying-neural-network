@@ -19,6 +19,7 @@ I started on this project all the way back in 2018, but I didn't have the necess
 ### Python scripts
 - Python 3 (could probably run with lots of different versions, but I wrote it using 3.10)
 - NumPy (again, probably has a wide range of versions that you could use, but I'm using 1.23)
+- Matplotlib (same as above, I'm using 3.5)
 
 ### Processing program
 - Processing (could probably use 3 or 4, but I used 4)
