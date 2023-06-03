@@ -20,8 +20,8 @@ INPUT_NEURONS = 3
 HIDDEN_NEURONS = 10
 OUTPUT_NEURONS = 8
 TRAINING_FILE_NAME = "colours_combined.txt"
-EPOCHS = 10
-TRAIN = False
+EPOCHS = 20
+TRAIN = True
 
 LEARNING_RATE = 0.5
 
@@ -64,11 +64,8 @@ if TRAIN:
                 d_outs_d_nets = output_outputs*(1-output_outputs) # 8x1
                 d_error_d_nets = np.multiply(d_error_d_outs, d_outs_d_nets) # 8x1
                 d_nets_d_weights = np.array([hidden_outputs]*OUTPUT_NEURONS) # 8x10
-                
-                d_error_d_weights = d_nets_d_weights # 8x10
-                for i in range(0, OUTPUT_NEURONS):
-                    for j in range(0, HIDDEN_NEURONS):
-                        d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
+
+                d_error_d_weights = (d_nets_d_weights.T * d_error_d_nets).T
                 
                 new_ol_weights = np.subtract(ol_weights, LEARNING_RATE*d_error_d_weights) # 8x10
 
@@ -78,10 +75,8 @@ if TRAIN:
                 d_outs_d_nets = hidden_outputs*(1-hidden_outputs)
                 d_error_d_nets = np.multiply(d_errors_d_hiddenouts, d_outs_d_nets)
                 d_nets_d_weights = np.array([input_vals]*HIDDEN_NEURONS)
-                d_error_d_weights = d_nets_d_weights
-                for i in range(0, HIDDEN_NEURONS):
-                    for j in range(0, INPUT_NEURONS):
-                        d_error_d_weights[i, j] = d_nets_d_weights[i, j] * d_error_d_nets[i]
+
+                d_error_d_weights = (d_nets_d_weights.T * d_error_d_nets).T
                         
                 new_hl_weights = np.subtract(hl_weights, LEARNING_RATE*d_error_d_weights)
 
