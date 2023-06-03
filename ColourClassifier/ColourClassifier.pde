@@ -23,36 +23,43 @@ void draw() {
 }
 void keyPressed() {
   if (key == ESC) {
+    trainingData = removeFirstElement(trainingData);
     saveStrings("trainingData2.txt", trainingData);
     exit();
   }
-  else if (key == 'r') {
+  else if (key == 'r')
     colour = "red";
-  }
-  else if (key == 'o') {
+  else if (key == 'o')
     colour = "orange";
-  }
-  else if (key == 'y') {
+  else if (key == 'y')
     colour = "yellow";
-  }
-  else if (key == 'g') {
+  else if (key == 'g')
     colour = "green";
-  }
-  else if (key == 'b') {
+  else if (key == 'b')
     colour = "blue";
-  }
-  else if (key == 'p') {
+  else if (key == 'p')
     colour = "purple";
-  }
-  else if (key == 'z') {
+  else if (key == 'z')
     colour = "black";
-  }
-  else if (key == 'w') {
+  else if (key == 'w')
     colour = "white";
-  }
   else return;
   s2 = append(trainingData, str(r)+" "+str(g)+" "+str(b)+" "+colour);
   trainingData = s2;
   r = random(1); g = random(1); b = random(1);
   counter += 1;
+}
+String[] removeFirstElement(String[] inputArray) { // from ChatGPT
+  if (inputArray.length <= 1) {
+    return new String[0]; // Return an empty array if the original array has only one element or is empty
+  }
+  
+  String[] result = new String[inputArray.length - 1];
+  
+  // Copy elements from inputArray to result, skipping the first element
+  for (int i = 1; i < inputArray.length; i++) {
+    result[i - 1] = inputArray[i];
+  }
+  
+  return result;
 }
