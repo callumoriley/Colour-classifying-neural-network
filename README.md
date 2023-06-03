@@ -25,8 +25,11 @@ I started on this project all the way back in 2018, but I didn't have the necess
 
 ### Usage
 
-Running the main network: `python main.py`  
-Running the Jupyter notebook: in a command prompt or terminal, `cd` into wherever this directory is downloaded and run `jupyter notebook`
+- Running the main network: `python main.py`  
+    - Make sure you set the properties in the program before running it  
+- Running the Jupyter notebook: in a command prompt or terminal, `cd` into wherever this directory is downloaded and run `jupyter notebook`  
+- Running the Processing program: open it in the Processing IDE (within the upper-level folder) and click the run button  
+    - Make sure you set the properties in the program before running it  
 
 ### Properties in main.py
 
