@@ -7,7 +7,7 @@ I started on this project all the way back in 2018, but I didn't have the necess
 ## Contents
 - `main.py` has the actual network
 - `backpropogation_example.ipynb` is a Jupyter Notebook that I used to test out computational methods for the neural network (based on [Matt Mazur's example](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/))
-- `generate_colours.py` is a (flawed) automatic colour generation program written with the help of ChatGPT (which made a big mistake actually, because it made yellow and orange the same colour)
+- `interactive_network.ipynb` is another Jupyter Notebook that allows you to use the neural network in a more interactive way than through running it in a Python IDE or through the command line
 - `ColourClassifier/ColourClassifier.pde` is a processing application that allows me to quickly generate a training data file
 - `colours.txt` and `generate_colours.txt` are training data files with RGB values and colour names listed
     - `colours.txt` was the original file that I generated back in 2017
@@ -16,10 +16,11 @@ I started on this project all the way back in 2018, but I didn't have the necess
 
 ## Dependencies
 
-### Python scripts
+### Python scripts/Jupyter notebooks
 - Python 3 (could probably run with lots of different versions, but I wrote it using 3.10)
 - NumPy (again, probably has a wide range of versions that you could use, but I'm using 1.23)
 - Matplotlib (same as above, I'm using 3.5)
+- ipywidgets (for interactive Jupyter Notebook, I'm using 7.7)
 
 ### Processing program
 - Processing (could probably use 3 or 4, but I used 4)
@@ -28,7 +29,7 @@ I started on this project all the way back in 2018, but I didn't have the necess
 
 - Running the main network: `python main.py`  
     - Make sure you set the properties in the program before running it  
-- Running the Jupyter notebook: in a command prompt or terminal, `cd` into wherever this directory is downloaded and run `jupyter notebook`  
+- Running the Jupyter Notebooks: in a command prompt or terminal, `cd` into wherever this directory is downloaded and run `jupyter notebook`, then use the interactive web browser window to run the notebooks
 - Running the Processing program: open `ColourClassifier.pde` in the Processing IDE (within its folder) and click the run button  
     - Make sure you set the properties in the program before running it  
 
