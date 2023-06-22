@@ -25,11 +25,11 @@ def import_weights(weights_filename):
 
 def forward_pass(input_vals, hl_weights, ol_weights):
     # calculating hidden layer outputs
-    hidden_nets = np.array([np.dot(w, input_vals) for w in hl_weights])
+    hidden_nets = np.dot(hl_weights, input_vals)
     hidden_outputs = sigmoid(hidden_nets)
-
+    
     # calculating output layer outputs
-    output_nets = np.array([np.dot(w, hidden_outputs) for w in ol_weights])
+    output_nets = np.dot(ol_weights, hidden_outputs)
     output_outputs = sigmoid(output_nets)
 
     return output_outputs
@@ -63,11 +63,11 @@ if __name__ == "__main__":
                     input_vals = np.array([float(data[i]) for i in range(0, INPUT_NEURONS)])
 
                     # calculating hidden layer outputs
-                    hidden_nets = np.array([np.dot(w, input_vals) for w in hl_weights])
+                    hidden_nets = np.dot(hl_weights, input_vals)
                     hidden_outputs = sigmoid(hidden_nets)
                     
                     # calculating output layer outputs
-                    output_nets = np.array([np.dot(w, hidden_outputs) for w in ol_weights])
+                    output_nets = np.dot(ol_weights, hidden_outputs)
                     output_outputs = sigmoid(output_nets)
 
                     # calculating error
