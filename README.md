@@ -45,7 +45,8 @@ I started on this project all the way back in 2018, but I didn't have the necess
 
 ## Evaluation
 
-![Training loss over a training session](training_loss.png)
-*Training loss over a training session, the network took about 10 seconds to generate this graph*
+| ![Training loss over a training session](training_loss.png) |
+|:--:|
+| *Training loss over a training session, the network took about 10 seconds to generate this graph* |
 
 The network seems to work pretty well. The training loss ends up being quite low and when playing around with the Jupyter Notebook interface it seems to guess the colours quite accurately!
