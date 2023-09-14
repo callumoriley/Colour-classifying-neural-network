@@ -42,3 +42,10 @@ I started on this project all the way back in 2018, but I didn't have the necess
 - `EPOCHS` - number of full pass-throughs of the training data the network will do during training
 - `TRAIN` - boolean variable that says whether or not to train the network or just run the network with pre-existing weights
 - `LEARNING_RATE` - set the learning rate of the network
+
+## Evaluation
+
+![Training loss over a training session](training_loss.png)
+*Training loss over a training session, the network took about 10 seconds to generate this graph*
+
+The network seems to work pretty well. The training loss ends up being quite low and when playing around with the Jupyter Notebook interface it seems to guess the colours quite accurately!

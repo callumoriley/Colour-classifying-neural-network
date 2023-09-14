@@ -40,7 +40,7 @@ if __name__ == "__main__":
     OUTPUT_NEURONS = 8
     TRAINING_FILE_NAME = "colours_combined.txt"
     EPOCHS = 20
-    TRAIN = False
+    TRAIN = True
 
     LEARNING_RATE = 0.5
 
@@ -104,6 +104,9 @@ if __name__ == "__main__":
                     ol_weights = new_ol_weights
 
         plt.plot(errors)
+        plt.title("Training loss over a training session")
+        plt.xlabel("Training iterations")
+        plt.ylabel("Loss")
         plt.show(block=False)
 
         print()
