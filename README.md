@@ -4,10 +4,13 @@ This is a program that implements a feed-forward neural network to recognize col
 
 I started on this project all the way back in 2018, but I didn't have the necessary math knowledge or skills to make it work successfully. Now, nearly 5 years later, I have made it work!
 
+If you're interested, I also wrote [a blog post](https://callumoriley.ca/posts/neuralNetwork.html) about this project!
+
 ## Contents
 - `main.py` has the actual network
 - `backpropogation_example.ipynb` is a Jupyter Notebook that I used to test out computational methods for the neural network (based on [Matt Mazur's example](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/))
 - `interactive_network.ipynb` is another Jupyter Notebook that allows you to use the neural network in a more interactive way than through running it in a Python IDE or through the command line
+- `classification_visualization.ipynb` is another Jupyter Notebook that shows a 2D plot of the separations between colour classifications (kind of like a regression)
 - `ColourClassifier/ColourClassifier.pde` is a processing application that allows me to quickly generate a training data file
 - `colours.txt` and `generate_colours.txt` are training data files with RGB values and colour names listed
     - `colours.txt` was the original file that I generated back in 2017
