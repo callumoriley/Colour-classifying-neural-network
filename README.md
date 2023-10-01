@@ -53,8 +53,8 @@ If you're interested, I also wrote [a blog post](https://callumoriley.ca/posts/n
 </p>
 <p align="center"><em>Training loss over a training session, the network took about 10 seconds to generate this graph</em></p>
 <p align="center">
-  <img src="images/classification_map.png" alt="Simulated regression plot of colour classification with the B channel held at 0.5 and the R and G channels being varied from 0 to 1 on each axis">
+  <img src="images/classification_map.png" alt="Simulated regression plot">
 </p>
-<p align="center"><em>Training loss over a training session, the network took about 10 seconds to generate this graph</em></p>
+<p align="center"><em>Simulated regression plot of colour classification with the B channel held at 0.5 and the R and G channels being varied from 0 to 1 on each axis</em></p>
 
 The network seems to work pretty well. The training loss ends up being quite low and when playing around with the Jupyter Notebook interface it seems to guess the colours quite accurately!
