@@ -49,7 +49,11 @@ If you're interested, I also wrote [a blog post](https://callumoriley.ca/posts/n
 ## Evaluation
 
 <p align="center">
-  <img src="training_loss.png" alt="Training loss over a training session">
+  <img src="images/training_loss.png" alt="Training loss over a training session">
+</p>
+<p align="center"><em>Training loss over a training session, the network took about 10 seconds to generate this graph</em></p>
+<p align="center">
+  <img src="images/classification_map.png" alt="Simulated regression plot of colour classification with the B channel held at 0.5 and the R and G channels being varied from 0 to 1 on each axis">
 </p>
 <p align="center"><em>Training loss over a training session, the network took about 10 seconds to generate this graph</em></p>
 
