@@ -4,9 +4,19 @@ int counter = 0;
 
 String[] trainingData = new String[1];
 String[] s2;
+StringDict colourKeys;
 
 void setup() {
   size(640, 360);
+  colourKeys = new StringDict();
+  colourKeys.set("r","red");
+  colourKeys.set("o","orange");
+  colourKeys.set("y","yellow");
+  colourKeys.set("g","green");
+  colourKeys.set("b","blue");
+  colourKeys.set("p","purple");
+  colourKeys.set("z","black");
+  colourKeys.set("w","white");
 }
 void draw() {
   background(int(r*256), int(g*256), int(b*256));
@@ -27,23 +37,10 @@ void keyPressed() {
     saveStrings("trainingData2.txt", trainingData);
     exit();
   }
-  else if (key == 'r')
-    colour = "red";
-  else if (key == 'o')
-    colour = "orange";
-  else if (key == 'y')
-    colour = "yellow";
-  else if (key == 'g')
-    colour = "green";
-  else if (key == 'b')
-    colour = "blue";
-  else if (key == 'p')
-    colour = "purple";
-  else if (key == 'z')
-    colour = "black";
-  else if (key == 'w')
-    colour = "white";
+  else if (colourKeys.hasKey(str(key))) colour = colourKeys.get(str(key));
   else return;
+  
+  println(colour);
   s2 = append(trainingData, str(r)+" "+str(g)+" "+str(b)+" "+colour);
   trainingData = s2;
   r = random(1); g = random(1); b = random(1);
